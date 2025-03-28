@@ -19,3 +19,4 @@ pycryptodome
 python_dateutil
 python-dotenv
 schedule
+pandas_market_calendars
