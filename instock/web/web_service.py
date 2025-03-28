@@ -1,12 +1,10 @@
-#!/usr/local/bin/python3
+
 # -*- coding: utf-8 -*-
 
 import logging
 import os.path
 import sys
 from abc import ABC
-
-import tornado.escape
 import tornado.httpserver
 import tornado.ioloop
 import tornado.options

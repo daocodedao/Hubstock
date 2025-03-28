@@ -1,8 +1,7 @@
 #!/bin/sh
 
-#export PYTHONPATH=/data/InStock
 
-# /usr/local/bin/python3 /data/InStock/instock/job/execute_daily_job.py
+# /usr/local/bin/python3 /data/work/Hubstock/instock/job/execute_daily_job.py
 
 # 获取脚本所在目录
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -15,11 +14,13 @@ cd $base_dir
 jobDir="${base_dir}/job"
 echo "jobDir: $jobDir"
 pythonPath=${base_dir}/venv/bin/python
+. $base_dir/instock/bin/colors.sh
+
 
 logName=execute_daily_job
 jobName=execute_daily_job.py
 
-. $base_dir/instock/bin/colors.sh
+
 
 TAILPID=`ps aux | grep "$jobName" | grep -v grep | awk '{print $2}'`
 echo "${YELLOW}check $jobName pid $TAILPID ${NOCOLOR}"

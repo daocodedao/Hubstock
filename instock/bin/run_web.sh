@@ -7,16 +7,14 @@ base_dir="$( cd "$script_dir/../.." && pwd )"
 echo "base_dir: $base_dir"
 cd $base_dir
 
-
-
 jobDir="${base_dir}/instock/web"
 echo "jobDir: $jobDir"
 pythonPath=${base_dir}/venv/bin/python
 
+. $base_dir/instock/bin/colors.sh
+
 logName=web_service
 jobName=web_service.py
-
-. $base_dir/instock/bin/colors.sh
 
 # 停止已运行的进程
 TAILPID=`ps aux | grep "$jobName" | grep -v grep | awk '{print $2}'`

@@ -7,7 +7,7 @@ MAINTAINER myh
 ENV LANG=zh_CN.UTF-8
 ENV LC_CTYPE=zh_CN.UTF-8
 ENV LC_ALL=C
-ENV PYTHONPATH=/data/InStock
+ENV PYTHONPATH=/data/work/Hubstock
 EXPOSE 9988
 
 # 使用国内镜像地址加速。修改debian apt更新地址，pip地址，设置时区
@@ -56,14 +56,14 @@ trusted-host = mirrors.aliyun.com" > /etc/pip.conf && \
 
 WORKDIR /data
 #InStock软件
-COPY stock /data/InStock
+COPY stock /data/work/Hubstock
 COPY cron/cron.hourly /etc/cron.hourly
 COPY cron/cron.workdayly /etc/cron.workdayly
 COPY cron/cron.monthly /etc/cron.monthly
 
 #add cron sesrvice.
 #任务调度
-RUN chmod 755 /data/InStock/instock/bin/run_*.sh && \
+RUN chmod 755 /data/work/Hubstock/instock/bin/run_*.sh && \
     chmod 755 /etc/cron.hourly/* && chmod 755 /etc/cron.workdayly/* && chmod 755 /etc/cron.monthly/* && \
     echo "SHELL=/bin/sh \n\
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin \n\
@@ -73,4 +73,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin \n\
 30 10 * * 3,6 /bin/run-parts /etc/cron.monthly \n" > /var/spool/cron/crontabs/root && \
     chmod 600 /var/spool/cron/crontabs/root
 
-ENTRYPOINT ["supervisord","-n","-c","/data/InStock/supervisor/supervisord.conf"]
+ENTRYPOINT ["supervisord","-n","-c","/data/work/Hubstock/supervisor/supervisord.conf"]
