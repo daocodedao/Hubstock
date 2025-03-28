@@ -2,7 +2,6 @@
 
 #export PYTHONPATH=/data/InStock
 
-#nohup  &
 /usr/local/bin/python3 /data/InStock/instock/job/execute_daily_job.py
 
 echo ------整体作业 支持批量作业------

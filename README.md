@@ -292,7 +292,7 @@ DB_PASSWORD=xxxxxx
 
 #### 8.1.执行数据抓取、处理、分析、识别
 
-支持批量作业，具体参见run_job.bat中的注释说明。
+支持批量作业，具体参见run_job.sh中的注释说明。
 
 建议将其加入到任务计划中，工作日的每天17：00执行。
 
@@ -304,11 +304,11 @@ DB_PASSWORD=xxxxxx
 
 3).收盘后1~2小时才有且有历史数据的：大宗交易。
 
-运行run_job.bat，会依据上面原则获取各模块当前或前个交易日的数据。
+运行run_job.sh，会依据上面原则获取各模块当前或前个交易日的数据。
 
 ```
 
-运行 run_job.bat
+运行 run_job.sh
 ```
 若想看开盘后的当前实时数据，可以运行下面，很快大概1秒：
 
@@ -319,14 +319,14 @@ python basic_data_daily_job.py
 #### 8.2.启动web服务
 
 ```
-运行 run_web.bat
+运行 run_web.sh
 ```
 启动服务后，打开浏览器，输入：http://localhost:9988/ ，即可使用本系统的可视化功能。
 
 #### 8.3.启动交易服务
 
 ```
-运行 run_trade.bat
+运行 run_trade.sh
 ```
 
 ## 二：docker镜像安装方式
