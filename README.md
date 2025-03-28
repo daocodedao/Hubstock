@@ -1,10 +1,7 @@
 **InStock股票系统**
-
+原始项目 https://github.com/myhhub/stock
 InStock股票系统，抓取每日股票、ETF关键数据，计算股票技术指标、筹码分布，识别K线各种形态，综合选股，内置多种选股策略，支持选股验证回测，支持自动交易，支持批量时间，运行高效，支持PC、平板、手机移动设备显示，同时提供Docker镜像方便安装，是量化投资的好帮手。
 
-The stock system,Capture key data on daily stocks and ETFs, calculate stock technical indicators, chip distribution, Position Cost Distribution(CYQ), identify various K-line forms, comprehensive stock selection, built-in multiple stock selection strategies, support stock selection verification and backtesting, support automatic trading, and support batch time , runs efficiently, supports display on PCs, tablets, and mobile phones, and provides Docker images for easy installation, making it a good helper for quantitative investment.
-
-Docker镜像：https://hub.docker.com/r/mayanghua/instock **镜像优化构建仅170M**。
 
 # 功能介绍
 
@@ -240,92 +237,27 @@ K线形态作业 klinepattern_data_daily_job.py
 
 以下安装及运行以windows为例进行介绍。
 
-### 1.安装python
-
-项目开发使用python 3.11，建议最新版。
+### 安装环境
+```
+python3.10 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt 
 
 ```
-（1）在官网 https://www.python.org/downloads/ 下载安装包，一键安装即可，安装切记勾选自动设置环境变量。
-（2）配置永久全局国内镜像库（因为有墙，无法正常安装库文件），执行如下dos命令：
-python pip config --global set  global.index-url https://mirrors.aliyun.com/pypi/simple/
-# 如果你只想为当前用户设置，你也可以去掉下面的"--global"选项
-```
-### 2.安装mysql
 
-建议最新版。
-
-```
-在官网 https://dev.mysql.com/downloads/mysql/ 下载安装包，一键安装即可。
-```
-### 3.安装 TA-Lib 共享静态库和头文件
-
-安装 TA-Lib C/C++ 共享静态库和头文件
-
-```
-https://ta-lib.org/install/ 下载最新 ta-lib 共享静态库和头文件，按照说明进行安装。
-安装方式按官方建议，会更简单：
-Windows Executable Installer
-macOS Homebrew
-Linux Debian packages
-```
-
-### 4.安装依赖库
-
-依赖库都是目前最新版本。
-
-a.安装依赖库：
-
-```
-#dos切换到本系统的根目录，执行下面命令：
-python pip install -r requirements.txt
-```
-b.若想升级项目依赖库至最新版，可以通过下面方法：
-
-先打开requirements.txt，然后修改文件中的“==”为“>=”，接着执行下面命令：
-
-```
-python pip install -r requirements.txt --upgrade
-```
-
-c.若扩展了本项目，可以通过下面方法生成项目依赖：
-
-```
-#使用pipreqs生成项目相关依赖的requirements.txt
-
-python pip install pipreqs
-# 安装pipreqs，若有安装可跳过
-
-python  pipreqs --encoding utf-8 --force ./ 
-# 本项目是utf-8编码
-```
-
-
-### 5.安装 Navicat（可选）
-
-Navicat可以方便管理数据库，以及可以手工对数据进行查看、处理、分析、挖掘。
-
-Navicat是一套可创建多个连接的数据库管理工具，用以方便管理 MySQL、Oracle、PostgreSQL、SQLite、SQL Server、MariaDB 和 MongoDB 等不同类型的数据库
-
-```
-（1）在官网 https://www.navicat.com.cn/download/navicat-premium 下载安装包，一键安装即可。
-
-（2）然后下载破解补丁: https://pan.baidu.com/s/18XpTHrm9OiLEl3u6z_uxnw 提取码: 8888 ，破解即可。
-```
-### 6.配置数据库
+### 配置数据库
 
 一般可能会修改的信息是”数据库访问密码“。
 
-修改database.py相关信息:
+创建 修改 .env 相关信息:
 
 ```
-db_host = "localhost"  # 数据库服务主机
-db_user = "root"  # 数据库访问用户
-db_password = "root"  # 数据库访问密码
-db_port = 3306  # 数据库服务端口
-db_charset = "utf8mb4"  # 数据库字符集
+DB_HOST=192.168.xxx.xxx
+DB_USER=root
+DB_PASSWORD=xxxxxx
 ```
 
-### 7.安装自动交易（可选）
+### 安装自动交易（可选）
 
 ```
 1.安装交易软件
