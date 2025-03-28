@@ -7,6 +7,7 @@
 script_dir=`pwd`
 # 获取项目根目录（脚本目录的上一级目录）
 base_dir="$( cd "$script_dir/.." && pwd )"
+base_dir=$script_dir
 echo "base_dir: $base_dir"
 cd $base_dir
 . $base_dir/instock/bin/colors.sh
