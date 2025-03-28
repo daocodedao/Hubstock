@@ -1,6 +1,6 @@
 **InStock股票系统**
 原始项目 https://github.com/myhhub/stock
-InStock股票系统，抓取每日股票、ETF关键数据，计算股票技术指标、筹码分布，识别K线各种形态，综合选股，内置多种选股策略，支持选股验证回测，支持自动交易，支持批量时间，运行高效，支持PC、平板、手机移动设备显示，同时提供Docker镜像方便安装，是量化投资的好帮手。
+InStock股票系统，抓取每日股票、ETF关键数据，计算股票技术指标、筹码分布，识别K线各种形态，综合选股，内置多种选股策略，支持选股验证回测，支持自动交易，支持批量时间，运行高效，支持PC、平板、手机移动设备显示，是量化投资的好帮手。
 
 
 # 功能介绍
@@ -227,9 +227,7 @@ K线形态作业 klinepattern_data_daily_job.py
 
 # 安装说明
 
-本系统支持Windows、Linux、MacOS，同时本系统创建了Docker镜像，按自己需要选择安装方式。
-
-下面按分常规安装方式、docker镜像安装方式进行一一说明。
+本系统支持 Linux、MacOS，按自己需要选择安装方式。
 
 ## 一：常规安装方式
 
@@ -329,58 +327,12 @@ python basic_data_daily_job.py
 运行 run_trade.sh
 ```
 
-## 二：docker镜像安装方式
-
-没有docker环境，可以参考：[VirtualBox虚拟机安装Ubuntu](https://www.ljjyy.com/archives/2019/10/100590.html)，里面也介绍了python、docker等常用软件的安装，若想在Windows下安装docker自行百度。
 
 ### 1.安装数据库镜像
 
 如果已经有Mysql、mariadb数据库可以跳过本步。
 
-运行下面命令：
 
-**特别提醒：执行命令的用户要有root权限，其他命令也如此。例如：ubuntu系统在命令前加上sudo** ，sudo docker......
-
-```
-docker run -d --name InStockDbService \
-    -v /data/mariadb/data:/var/lib/instockdb \
-    -e MYSQL_ROOT_PASSWORD=root \
-    library/mariadb:latest
-```
-
-### 2.安装本系统镜像
-
-a.若按上面【1.安装数据库镜像】装的数据库，运行下面命令：
-
-```
-docker run -dit --name InStock --link=InStockDbService \
-    -p 9988:9988 \
-    -e db_host=InStockDbService \
-    mayanghua/instock:latest
-```
-
-b.已经有Mysql、mariadb数据库，运行下面命令：
-
-```
-docker run -dit --name InStock \
-    -p 9988:9988 \
-    -e db_host=localhost \
-    -e db_user=root \
-    -e db_password=root \
-    -e db_database=instockdb \
-    -e db_port=3306 \
-    mayanghua/instock:latest
-```
-
-docker -e 参数说明：
-```
-db_host       # 数据库服务主机
-db_user       # 数据库访问用户
-db_password   # 数据库访问密码
-db_database   # 数据库名称
-db_port       # 数据库服务端口
-```
-按自己数据库实际情况配置参数。
 
 ### 3. 系统运行
 
@@ -393,7 +345,6 @@ db_port       # 数据库服务端口
 历史数据抓取、处理、分析、识别、回测，运行下面命令：
 
 ```
-docker exec -it InStock bash 
 cat InStock/instock/bin/run_job.sh
 #查看run_job.sh注释,自己选择作业
 ------整体作业，支持批量作业------
@@ -421,30 +372,12 @@ python execute_daily_job.py 2023-03-01,2023-03-02
 运行下面命令：
 
 ```
-docker exec -it InStock bash 
 cat InStock/instock/log/stock_execute_job.log
 cat InStock/instock/log/stock_web.log
 ```
 
-### 6.docker常用命令
-
-```
-docker container stop InStock InStockDbService
-#停止容器
-docker container prune
-#回收容器
-docker rmi mayanghua/instock:latest library/mariadb:latest
-#删除镜像
-```
-
-具体参见：[Docker基础之 二.镜像及容器的基本操作](https://www.ljjyy.com/archives/2018/06/100208.html)
 
 ### 7.自动交易
 
-目前只支持windows。参考常规安装方式,只需安装python、依赖库，**不需安装mysql、talib等**。
+目前只支持windows。参考常规安装方式, 只需安装python、依赖库，**不需安装mysql、talib等**。
 
-# 特别声明
-
-股市有风险投资需谨慎，本系统只能用于学习、股票分析，投资盈亏概不负责。
-
-本系统中的表格为第三方商业控件，仅使用了评估版进行学习及测试。
