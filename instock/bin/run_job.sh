@@ -4,7 +4,7 @@
 # /usr/local/bin/python3 /data/work/Hubstock/instock/job/execute_daily_job.py
 
 # 获取脚本所在目录
-script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+script_dir=`pwd`
 # 获取项目根目录（脚本目录的上一级目录）
 base_dir="$( cd "$script_dir/../.." && pwd )"
 echo "base_dir: $base_dir"
