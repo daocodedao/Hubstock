@@ -10,7 +10,7 @@ script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 base_dir="$( cd "$script_dir/../.." && pwd )"
 echo "base_dir: $base_dir"
 cd $base_dir
-
+. $base_dir/instock/bin/colors.sh
 
 jobDir="${base_dir}/job"
 echo "jobDir: $jobDir"
