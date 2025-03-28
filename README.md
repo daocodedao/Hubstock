@@ -381,3 +381,22 @@ cat InStock/instock/log/stock_web.log
 
 目前只支持windows。参考常规安装方式, 只需安装python、依赖库，**不需安装mysql、talib等**。
 
+### frp
+```
+cat /data/work/frp/frpc.ini 
+vim /data/work/frp/frpc.ini
+
+# gradio_university 6610
+[ssh-HubStock9988]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 9988
+remote_port = 9988
+use_encryption = false
+use_compression = false
+
+# 重启frp
+sudo systemctl restart  supervisor
+sudo supervisorctl reload
+sudo supervisord
+```

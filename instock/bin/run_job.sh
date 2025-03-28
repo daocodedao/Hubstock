@@ -25,6 +25,15 @@ TAILPID=`ps aux | grep "$jobName" | grep -v grep | awk '{print $2}'`
 echo "${YELLOW}check $jobName pid $TAILPID ${NOCOLOR}"
 [ "0$TAILPID" != "0" ] && kill -9 $TAILPID
 
+# 默认操作为 restart，如果有参数且为 stop，则只执行停止操作
+action=${1:-restart}
+
+# 如果操作为 stop，则到此结束
+if [ "$action" = "stop" ]; then
+    echo "${GREEN}已完成停止操作${NOCOLOR}"
+    exit 0
+fi
+
 mkdir -p logs
 
 echo "${YELLOW}nohup $pythonPath $jobDir/$jobName > logs/${logName}.log 2>&1 &${NOCOLOR}"
