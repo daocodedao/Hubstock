@@ -390,8 +390,8 @@ vim /data/work/frp/frpc.ini
 [ssh-HubStock9988]
 type = tcp
 local_ip = 127.0.0.1
-local_port = 9988
-remote_port = 9988
+local_port = 9989
+remote_port = 9989
 use_encryption = false
 use_compression = false
 
@@ -399,4 +399,12 @@ use_compression = false
 sudo systemctl restart  supervisor
 sudo supervisorctl reload
 sudo supervisord
+```
+
+### ngix
+```
+sudo vim /etc/nginx/conf.d/instock.conf
+sudo nginx -t
+sudo systemctl reload nginx
+
 ```
