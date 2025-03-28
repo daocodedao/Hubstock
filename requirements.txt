@@ -18,3 +18,4 @@ beautifulsoup4
 pycryptodome
 python_dateutil
 python-dotenv
+schedule
