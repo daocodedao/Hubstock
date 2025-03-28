@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://ta-lib.org/install/#macos-build-from-source
 
 # 获取脚本所在目录
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -12,6 +13,6 @@ pythonPath=${base_dir}/venv/bin/pip
 jobDir="${base_dir}/instock/bin"
 echo "jobDir: $jobDir"
 
-# wget -e use_proxy=yes -e http_proxy=http://127.0.0.1:1087 https://github.com/ta-lib/ta-lib/releases/download/v0.6.4/ta-lib_0.6.4_arm64.deb
+# linux 版本
 sudo dpkg -i ${jobDir}/ta-lib_0.6.4_amd64.deb  
 $pythonPath install TA-Lib
