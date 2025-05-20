@@ -7,12 +7,12 @@ import pymysql
 from sqlalchemy import create_engine
 from sqlalchemy.types import NVARCHAR
 from sqlalchemy import inspect
-from dotenv import load_dotenv
 
 __author__ = 'myh '
 __date__ = '2023/3/10 '
 
 # 加载 .env 文件
+from dotenv import load_dotenv
 load_dotenv()
 
 # 默认数据库配置

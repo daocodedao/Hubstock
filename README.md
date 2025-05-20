@@ -306,7 +306,19 @@ DB_PASSWORD=xxxxxx
 
 ```
 
-运行 run_job.sh
+# 如果重启启动了机器，要先停了nginx，避免端口冲突
+sudo service nginx stop
+
+# 查看mysql是否运行
+docker ps -a
+# 启动mysql
+docker start mysqlid
+
+#运行 
+./instock/bin/run_job.sh
+
+sudo service nginx start
+
 ```
 若想看开盘后的当前实时数据，可以运行下面，很快大概1秒：
 
@@ -331,8 +343,6 @@ python basic_data_daily_job.py
 ### 1.安装数据库镜像
 
 如果已经有Mysql、mariadb数据库可以跳过本步。
-
-
 
 ### 3. 系统运行
 
@@ -401,7 +411,7 @@ sudo supervisorctl reload
 sudo supervisord
 ```
 
-### ngix
+### ngnix
 ```
 sudo vim /etc/nginx/conf.d/instock.conf
 sudo nginx -t

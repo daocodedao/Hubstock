@@ -359,10 +359,12 @@ TABLE_CN_STOCK_INDICATORS['columns'].update(STOCK_STATS_DATA['columns'])
 _tmp_columns = TABLE_CN_STOCK_FOREIGN_KEY['columns'].copy()
 _tmp_columns.update(TABLE_CN_STOCK_BACKTEST_DATA['columns'])
 
-TABLE_CN_STOCK_INDICATORS_BUY = {'name': 'cn_stock_indicators_buy', 'cn': '股票指标买入',
+TABLE_CN_STOCK_INDICATORS_BUY = {'name': 'cn_stock_indicators_buy', 
+                                 'cn': '股票指标买入',
                                  'columns': _tmp_columns}
 
-TABLE_CN_STOCK_INDICATORS_SELL = {'name': 'cn_stock_indicators_sell', 'cn': '股票指标卖出',
+TABLE_CN_STOCK_INDICATORS_SELL = {'name': 'cn_stock_indicators_sell', 
+                                  'cn': '股票指标卖出',
                                   'columns': _tmp_columns}
 
 TABLE_CN_STOCK_STRATEGIES = [
@@ -964,13 +966,11 @@ CN_STOCK_CPBD = {'name': 'cn_stock_cpbd', 'cn': '操盘必读',
                              'LOAN_REPAY_VOL': {'type': FLOAT, 'cn': '融券还量'},
                              'LOAN_BALANCE': {'type': FLOAT, 'cn': '融券余额'}}}
 
-
 def get_field_cn(key, table):
     f = table.get('columns').get(key)
     if f is None:
         return key
     return f.get('cn')
-
 
 def get_field_cns(cols):
     data = []
@@ -990,13 +990,11 @@ def get_field_cns(cols):
         # data.append({"name": k, "displayName": cols[k]['cn'], "size": cols[k]['size']})
     return data
 
-
 def get_field_types(cols):
     data = {}
     for k in cols:
         data[k] = cols[k]['type']
     return data
-
 
 def get_field_type_name(col_type):
     if col_type == DATE:

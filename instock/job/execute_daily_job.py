@@ -42,6 +42,7 @@ def is_trading_day():
     返回: True 如果是交易日，False 如果不是
     """
     try:
+        # 使用  https://github.com/seasidesunrise/a_trade_calendar 也可判断交易日
         # 获取上海证券交易所日历
         sse = mcal.get_calendar('SSE')
         
@@ -75,32 +76,32 @@ def handleJob(isNeedCheckTradingDay=True):
     logging.info("######## 任务执行时间: %s #######" % _start.strftime("%Y-%m-%d %H:%M:%S.%f"))
     
     # 第1步创建数据库
-    logging.info("######## 开始 init_job 任务 #######")
+    logging.info("######## 开始 init_job 任务, 检查数据库，表 #######")
     bj.main()
     
-    logging.info("第2.1步创建股票基础数据表")
+    logging.info("第 2.1 步创建股票基础数据表")
     hdj.main()
     
-    logging.info("第2.2步创建综合股票数据表")
+    logging.info("第 2.2 步创建综合股票数据表")
     sddj.main()
     # 使用线程池并行执行任务
     with concurrent.futures.ThreadPoolExecutor() as executor:  
-        logging.info("第3.1步创建股票其它基础数据表")
+        logging.info("第 3.1 步创建股票其它基础数据表")
         executor.submit(hdtj.main)
         
-        logging.info("第3.2步创建股票指标数据表")
+        logging.info("第 3.2 步创建股票指标数据表")
         executor.submit(gdj.main)
         
-        logging.info("第4步创建股票k线形态表")
+        logging.info("第 3.3 步创建股票k线形态表")
         executor.submit(kdj.main)
         
-        logging.info("第5步创建股票策略数据表")
+        logging.info("第 3.4 步创建股票策略数据表")
         executor.submit(sdj.main)
 
-    logging.info("第6步创建股票回测")
+    logging.info("第 6 步创建股票回测")
     bdj.main()
 
-    logging.info("第7步创建股票闭盘后才有的数据")
+    logging.info("第 7 步创建股票闭盘后才有的数据")
     acdj.main()
 
     logging.info("######## 完成任务, 使用时间: %s 秒 #######" % (time.time() - start))  # 记录任务完成时间和总耗时
